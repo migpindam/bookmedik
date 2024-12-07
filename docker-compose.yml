@@ -1,0 +1,31 @@
+#version: '3.1'
+services:
+
+  db:
+    container_name: db
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+#    volumes:
+#      - mariadb_data:/var/lib/mysql
+
+  app:
+    depends_on:
+      - db
+    container_name: app
+    image: migpindam/bookmedik:v1
+    restart: always
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    ports:
+      - 8080:80
+
+#volumes:
+#    mariadb_data:
