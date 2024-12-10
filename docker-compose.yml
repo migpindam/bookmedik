@@ -10,8 +10,8 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
-#    volumes:
-#      - mariadb_data:/var/lib/mysql
+    volumes:
+      - mariadb_data:/var/lib/mysql
 
   app:
     depends_on:
@@ -27,5 +27,5 @@ services:
     ports:
       - 8080:80
 
-#volumes:
-#    mariadb_data:
+volumes:
+    mariadb_data:
